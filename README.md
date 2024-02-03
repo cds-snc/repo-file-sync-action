@@ -567,7 +567,7 @@ The actual source code of this library is in the `src` folder.
 
 This Action was inspired by:
 
-- Inspired heavily and forked from his repo. ([@betahuhn](https://github.com/BetaHuhn)) 
+- Inspired heavily and forked from ([@betahuhn](https://github.com/BetaHuhn)) and [repo-file-sync](https://github.com/BetaHuhn/repo-file-sync-action/)
 - [action-github-workflow-sync](https://github.com/varunsridharan/action-github-workflow-sync)
 - [files-sync-action](https://github.com/adrianjost/files-sync-action)
 
