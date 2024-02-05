@@ -12,6 +12,8 @@ const {
 	GITHUB_SERVER_URL,
 	IS_INSTALLATION_TOKEN,
 	IS_FINE_GRAINED,
+	GIT_USERNAME,
+	GIT_EMAIL,
 	TMP_DIR,
 	COMMIT_BODY,
 	COMMIT_PREFIX,
@@ -61,6 +63,7 @@ export default class Git {
 		this.gitUrl = `https://${ IS_INSTALLATION_TOKEN ? 'x-access-token:' : '' }${ IS_FINE_GRAINED ? 'oauth:' : '' }${ GITHUB_TOKEN }@${ repo.fullName }.git`
 
 		await this.clone()
+		await this.setIdentity()
 		await this.getBaseBranch()
 		await this.getLastCommitSha()
 
@@ -96,6 +99,19 @@ export default class Git {
 			`git clone --depth 1 ${ this.repo.branch !== 'default' ? '--branch "' + this.repo.branch + '"' : '' } ${ this.gitUrl } ${ this.workingDir }`
 		)
 	}
+
+	async setIdentity() {
+		const username = GIT_USERNAME
+		const email = GIT_EMAIL
+
+		core.debug(`Setting git user to email: ${ email }, username: ${ username }`)
+		return execCmd(
+			`git config --local user.name "${ username }" && git config --local user.email "${ email }"`,
+			this.workingDir
+		)
+
+	}
+
 
 	async getBaseBranch() {
 		this.baseBranch = await execCmd(
