@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: repo-file-sync-action
+  description: 'A github action that syncs files across different repos within the organization'
+  labels:
+    license: MIT
+spec:
+  type: website
+  lifecycle: production
+  owner: internal-sre 
+  domain: site-reliability-engineering
